@@ -76,28 +76,21 @@
     </q-drawer>
 
     <q-page-container>
-      <HelloWorld />
+      <hello-world></hello-world>
     </q-page-container>
   </q-layout>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import {BaseComponent, Component} from '@/components/BaseComponent';
 
-export default {
-  name: 'LayoutDefault',
+@Component({ name: 'layout-default' })
+export default class LayoutDefault extends BaseComponent {
 
-  components: {
-    HelloWorld
-  },
+  public leftDrawerOpen: boolean = false
 
-  data () {
-    return {
-      leftDrawerOpen: false
-    }
-  }
 }
 </script>
 
-<style>
+<style lang="stylus">
 </style>
