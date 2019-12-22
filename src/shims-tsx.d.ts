@@ -1,4 +1,5 @@
 import Vue, { VNode } from 'vue'
+export {Dictionary} from 'vue-router/types/router'
 
 declare global {
   namespace JSX {
