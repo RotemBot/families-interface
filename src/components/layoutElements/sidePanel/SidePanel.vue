@@ -58,10 +58,14 @@
   export default class SidePanel extends BaseComponent {
 
       @Kernel.Inject(Client)
-      private client: Client
+      private client!: Client
 
       public createFamily () {
-          this.client.createNewFamily({ name: 'Test' })
+          this.client.createNewFamily({
+              name: 'Botavia',
+              homeTown: 'Herzliya',
+              email: 'rotem@gmail.com'
+          })
       }
   }
 </script>

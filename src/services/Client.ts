@@ -3,6 +3,8 @@ import {injectable} from 'inversify'
 
 export interface CreateFamilyPayload {
     name: string
+    homeTown: string
+    email: string
 }
 
 @injectable()
@@ -26,7 +28,7 @@ export class Client {
     }
 
     public async createNewFamily (payload: CreateFamilyPayload) {
-        const res = await this._axios.post('/families')
         debugger
+        const res = await this._axios.post('/families', payload)
     }
 }
