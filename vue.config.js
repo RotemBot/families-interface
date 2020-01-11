@@ -21,10 +21,14 @@ console.log("Env: ", env)
 
 module.exports = {
     pluginOptions: {
-        quasar: {
-            importStrategy: 'manual',
-            rtlSupport: true
-        }
+      quasar: {
+        importStrategy: 'manual',
+        rtlSupport: true
+      },
+      'style-resources-loader': {
+        preProcessor: 'stylus',
+        patterns: []
+      }
     },
     transpileDependencies: [
         'quasar'
