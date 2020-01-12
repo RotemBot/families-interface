@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.6.1",
     "@quasar/extras": "^1.4.0",
     "@types/logger": "0.0.0",
     "axios": "^0.19.1",

@@ -26,6 +26,11 @@
 
         public leftDrawerOpen: boolean = false
 
+        public created () {
+            // @ts-ignore
+            this.$q.dark.set(true)
+        }
+
     }
 </script>
 

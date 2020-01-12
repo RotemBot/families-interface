@@ -9,6 +9,24 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import SidePanel from '@/components/layoutElements/sidePanel/SidePanel.vue'
 import MainToolbar from '@/components/layoutElements/mainToolbar/MainToolbar.vue'
 import {Kernel} from '@/kernel'
+// @ts-ignore
+import { domain, clientId } from './auth_config.json'
+// @ts-ignore
+import { Auth0Plugin } from './auth'
+
+// Install the authentication plugin here
+Vue.use(Auth0Plugin, {
+    domain,
+    clientId,
+    // @ts-ignore
+    onRedirectCallback: (appState) => {
+        router.push(
+            appState && appState.targetUrl
+                ? appState.targetUrl
+                : window.location.pathname
+        )
+    }
+})
 
 Vue.component('hello-world', HelloWorld)
 Vue.component('side-panel', SidePanel)
