@@ -1,5 +1,5 @@
 <template>
-    <q-toolbar>
+    <q-toolbar class="bg-black text-white">
         <q-btn
                 flat
                 dense
@@ -10,10 +10,12 @@
         />
 
         <q-toolbar-title>
-            Quasar App
+            {{ $heb.appName }}
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div class="column justify-center">
+            <img src="../../../assets/logo.png" height="35"/>
+        </div>
     </q-toolbar>
 </template>
 

@@ -15,16 +15,18 @@ Vue.component('side-panel', SidePanel)
 Vue.component('main-toolbar', MainToolbar)
 
 Vue.config.productionTip = false
-
+Vue.prototype.$heb = {
+    appName: `צ'יף ספורט`
+}
 
 
 const main = async () => {
-  await Kernel.get()
-  new Vue({
-    router,
-    store,
-    render: (h) => h(App),
-  }).$mount('#app')
+    await Kernel.get()
+    new Vue({
+        router,
+        store,
+        render: (h) => h(App),
+    }).$mount('#app')
 }
 
 main()
