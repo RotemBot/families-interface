@@ -1,9 +1,9 @@
-import Getters from '@/store/Getters'
-import Actions from '@/store/Actions'
+import { baseStore } from '@/store/init'
+export { vuexStore } from './vuexStore'
 
 const store = {
-  getters: new Getters(),
-  actions: new Actions(),
+  getters: baseStore.getters,
+  actions: baseStore.actions
 }
 
 type Store = typeof store

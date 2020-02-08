@@ -12,9 +12,11 @@
 <script lang="ts">
     import {BaseComponent, Component} from '@/components/BaseComponent'
 
-    @Component({name: 'no-menu-layout'})
+    @Component({ name: 'no-menu-layout' })
     export default class NoMenuLayout extends BaseComponent {
-
+        constructor () {
+            super()
+        }
     }
 </script>
 

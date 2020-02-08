@@ -12,7 +12,7 @@ import {Kernel} from '@/kernel'
 import { domain, clientId } from './auth_config.json'
 // @ts-ignore
 import { Auth0Plugin } from './auth'
-import {vuexStore} from '@/store/config'
+import { vuexStore } from '@/store'
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {

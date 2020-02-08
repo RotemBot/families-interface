@@ -22,9 +22,7 @@ abstract class BaseComponent extends Vue {
         return store
     }
 
-    protected get navigator () {
-        return NAVIGATOR
-    }
+    // protected navigator = NAVIGATOR
 }
 
 export { BaseComponent, Component, NoCache }
