@@ -3,7 +3,6 @@ import App from './App.vue'
 import './registerServiceWorker'
 import 'reflect-metadata'
 import router from './router'
-import store from './store'
 import './quasar'
 import HelloWorld from '@/components/HelloWorld.vue'
 import SidePanel from '@/components/layoutElements/sidePanel/SidePanel.vue'
@@ -13,6 +12,7 @@ import {Kernel} from '@/kernel'
 import { domain, clientId } from './auth_config.json'
 // @ts-ignore
 import { Auth0Plugin } from './auth'
+import {vuexStore} from '@/store/config'
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {
@@ -42,7 +42,7 @@ const main = async () => {
     await Kernel.get()
     new Vue({
         router,
-        store,
+        store: vuexStore,
         render: (h) => h(App),
     }).$mount('#app')
 }
