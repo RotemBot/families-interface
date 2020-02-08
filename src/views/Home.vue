@@ -26,5 +26,15 @@
                 returnTo: window.location.origin
             })
         }
+
+        public mounted () {
+            // @ts-ignore
+            window.home = this
+        }
+
+        public beforeDestroy () {
+            // @ts-ignore
+            window.home = undefined
+        }
     }
 </script>

@@ -1,21 +1,7 @@
 <template>
-    <q-layout view="lHh Lpr lFf">
-        <q-header elevated class="glossy">
-            <main-toolbar @toggleDrawer="leftDrawerOpen = !leftDrawerOpen"></main-toolbar>
-        </q-header>
-
-        <q-drawer
-                v-model="leftDrawerOpen"
-                bordered
-                content-class="bg-grey-2"
-        >
-            <side-panel></side-panel>
-        </q-drawer>
-
-        <q-page-container>
-            <router-view></router-view>
-        </q-page-container>
-    </q-layout>
+    <div id="app">
+        <router-view :key="$route.name"/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -23,8 +9,6 @@
 
     @Component({ name: 'layout-default' })
     export default class LayoutDefault extends BaseComponent {
-
-        public leftDrawerOpen: boolean = false
 
         public created () {
             // @ts-ignore

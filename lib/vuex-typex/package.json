@@ -1,0 +1,16 @@
+{
+  "name": "vuex-typex",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "postinstall": "npm run build"
+  },
+  "dependencies": {
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^2.7.1"
+  }
+}

@@ -1,15 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Getters from '@/store/Getters'
+import Actions from '@/store/Actions'
 
-Vue.use(Vuex)
+const store = {
+  getters: Getters,
+  actions: Actions,
+}
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  },
-})
+type Store = typeof store
+
+export {
+  store,
+  Store
+}
+
+// @ts-ignore
+window.store = store
