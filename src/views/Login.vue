@@ -1,6 +1,8 @@
 <template>
     <q-page>
-        <q-btn label="Login"></q-btn>
+        <q-btn
+                label="Login"
+        ></q-btn>
     </q-page>
 </template>
 
@@ -9,6 +11,11 @@
 
     @Component({name: 'login'})
     export default class Login extends BaseComponent {
+        public mounted () {
+            if (this.store.getters.isAuthenticated()) {
+
+            }
+        }
 
     }
 </script>

@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import { createDecorator } from 'vue-class-component'
 export { Watch, Prop } from 'vue-property-decorator'
+import { store } from '@/store'
+import { NAVIGATOR } from '@/router/Navigator'
 
 const NoCache = createDecorator((options, key) => {
     // component options should be passed to the callback
@@ -14,6 +16,14 @@ abstract class BaseComponent extends Vue {
 
     constructor () {
         super()
+    }
+
+    protected get store () {
+        return store
+    }
+
+    protected get navigator () {
+        return NAVIGATOR
     }
 }
 

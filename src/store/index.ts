@@ -2,8 +2,8 @@ import Getters from '@/store/Getters'
 import Actions from '@/store/Actions'
 
 const store = {
-  getters: Getters,
-  actions: Actions,
+  getters: new Getters(),
+  actions: new Actions(),
 }
 
 type Store = typeof store
