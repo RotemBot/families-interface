@@ -15,7 +15,7 @@
     export default class Login extends BaseComponent {
         public async mounted () {
             // @ts-ignore
-            if (this.store.getters.isAuthenticated() || this.$auth.isAuthenticated) {
+            if (this.$auth.isAuthenticated) {
                 await this.store.actions.setAuthenticated(true)
                 await NAVIGATOR.main()
             } else {
