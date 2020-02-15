@@ -28,7 +28,6 @@ class Auth0 extends Loggable {
         try {
             const client = await this.auth0Client()
             await client.loginWithRedirect()
-            debugger
             await client.handleRedirectCallback()
             this.isAuthenticated = true
             this._logger.debug(`Login successfull`)

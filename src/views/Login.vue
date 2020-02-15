@@ -27,12 +27,21 @@
 </template>
 
 <script lang="ts">
-    import {BaseComponent, Component} from '@/components/BaseComponent'
+    import {BaseComponent, Component, Watch} from '@/components/BaseComponent'
     import {NAVIGATOR} from '@/router/Navigator'
 
     @Component({name: 'login'})
     export default class Login extends BaseComponent {
         public async mounted () {
+            await this._redirect()
+        }
+
+        @Watch('$auth.isAuthenticated', { deep: true })
+        public async handleAuthenticationStateChange () {
+            await this._redirect()
+        }
+
+        private async _redirect () {
             // @ts-ignore
             if (this.$auth.isAuthenticated) {
                 await this.store.actions.setAuthenticated(true)
