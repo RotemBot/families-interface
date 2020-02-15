@@ -1,7 +1,9 @@
 <template>
     <q-layout>
         <q-header>
-            <main-toolbar></main-toolbar>
+            <main-toolbar
+            :hasSideMenu="false"
+            ></main-toolbar>
         </q-header>
         <q-page-container>
             <router-view></router-view>

@@ -1,9 +1,28 @@
 <template>
     <q-page>
-        <q-btn
-                label="Login"
-                @click="login"
-        ></q-btn>
+        <div class="row justify-center" style="height: calc(100vh - 50px)">
+            <div class="column col-auto">
+                <div class="row justify-center" style="margin-top: 150px">
+                    <img
+                            src="@/assets/logo_chief_white.png"
+                            height="170"
+                    ></img>
+                </div>
+                <div class="row">
+                    <h4>{{ $heb.welcomeMessage }}</h4>
+                </div>
+                <div class="row justify-center">
+                    <div class="column">
+                        <q-btn
+                                :label="$heb.login"
+                                @click="login"
+                                color="secondary"
+                                size="lg"
+                        ></q-btn>
+                    </div>
+                </div>
+            </div>
+        </div>
     </q-page>
 </template>
 

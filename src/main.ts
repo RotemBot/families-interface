@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import 'reflect-metadata'
 import router from './router'
 import './quasar'
+import './hebrew'
 import HelloWorld from '@/components/HelloWorld.vue'
 import SidePanel from '@/components/layoutElements/sidePanel/SidePanel.vue'
 import MainToolbar from '@/components/layoutElements/mainToolbar/MainToolbar.vue'
@@ -33,10 +34,6 @@ Vue.component('side-panel', SidePanel)
 Vue.component('main-toolbar', MainToolbar)
 
 Vue.config.productionTip = false
-Vue.prototype.$heb = {
-    appName: `צ'יף ספורט`
-}
-
 
 const main = async () => {
     await Kernel.get()
