@@ -5,7 +5,7 @@ import {login} from '@/router/routes/noAuth'
 
 class Navigator {
     public main = async () => {
-        if (store.getters.isAuthenticated()) {
+        if (store.getters.isAuthenticated()()) {
             await router.push({
                 name: home.name
             })

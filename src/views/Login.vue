@@ -6,7 +6,7 @@
                     <img
                             src="@/assets/logo_chief_white.png"
                             height="170"
-                    ></img>
+                            alt="Chief Sport Logo"/>
                 </div>
                 <div class="row">
                     <h4>{{ $heb.welcomeMessage }}</h4>
@@ -30,11 +30,8 @@
     import {BaseComponent, Component, Watch} from '@/components/BaseComponent'
     import {NAVIGATOR} from '@/router/Navigator'
 
-    @Component({name: 'login'})
+    @Component({ name: 'login' })
     export default class Login extends BaseComponent {
-        public async mounted () {
-            await this._redirect()
-        }
 
         @Watch('$auth.isAuthenticated', { deep: true })
         public async handleAuthenticationStateChange () {
@@ -42,9 +39,25 @@
         }
 
         private async _redirect () {
-            // @ts-ignore
-            if (this.$auth.isAuthenticated) {
+            await this._setJWT()
+            if (this.auth0.isAuthenticated) {
                 await NAVIGATOR.main()
+            }
+        }
+
+        public async mounted () {
+            if (!this.store.getters.isAuthenticated()()) {
+                await this._setJWT()
+            }
+        }
+
+        private async _setJWT () {
+            if (this.auth0.isAuthenticated) {
+                const jwt = this.auth0.auth0Client.cache.cache["default::openid profile email"].id_token
+                if (jwt) {
+                    await this.store.actions.setJWT(jwt)
+                }
+                else this.auth0.isAuthenticated = false
             }
         }
 

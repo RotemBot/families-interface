@@ -22,7 +22,12 @@ abstract class BaseComponent extends Vue {
         return store
     }
 
-    // protected navigator = NAVIGATOR
+    protected get isAuthenticated (): boolean {
+        return this.store.getters.isAuthenticated()()
+    }
+
+    // @ts-ignore - auth0 plugin
+    protected auth0: any = this.$auth
 }
 
 export { BaseComponent, Component, NoCache }

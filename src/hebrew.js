@@ -4,6 +4,7 @@ class Hebrew {
     static appName = `צ'יף ספורט`
     static login = `התחברות`
     static welcomeMessage = `ברוכים הבאים למערכת הפעילויות של ${this.appName}`
+    static logOut = `התנתק`
 
     toJSON() {
         const keys = Object.getOwnPropertyNames(Hebrew).splice(3)

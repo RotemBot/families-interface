@@ -1,5 +1,7 @@
 import Vue from "vue"
 import createAuth0Client from "@auth0/auth0-spa-js"
+import {clientId, domain} from '../auth_config'
+import router from '../router'
 
 /** Define a default action to perform after authentication */
 const DEFAULT_REDIRECT_CALLBACK = () =>
@@ -9,7 +11,6 @@ let instance;
 
 /** Returns the current instance of the SDK */
 export const getInstance = () => instance;
-
 /** Creates an instance of the Auth0 SDK. If one has already been created, it returns that instance */
 export const useAuth0 = ({
                              onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
@@ -31,6 +32,15 @@ export const useAuth0 = ({
             };
         },
         methods: {
+            async init () {
+                // Create a new instance of the SDK client using members of the given options object
+                this.auth0Client = await createAuth0Client({
+                    domain: domain,
+                    client_id: clientId,
+                    audience: options.audience,
+                    redirect_uri: redirectUri
+                });
+            },
             /** Authenticates the user using a popup window */
             async loginWithPopup(o) {
                 this.popupOpen = true;
@@ -78,19 +88,16 @@ export const useAuth0 = ({
                 return this.auth0Client.getTokenWithPopup(o);
             },
             /** Logs the user out and removes their session on the authorization server */
-            logout(o) {
+            async logout(o) {
+                if (!this.auth0Client) {
+                    await this.init()
+                }
                 return this.auth0Client.logout(o);
             }
         },
         /** Use this lifecycle method to instantiate the SDK client */
         async created() {
-            // Create a new instance of the SDK client using members of the given options object
-            this.auth0Client = await createAuth0Client({
-                domain: options.domain,
-                client_id: options.clientId,
-                audience: options.audience,
-                redirect_uri: redirectUri
-            });
+            await this.init()
 
             try {
                 // If the user is returning to the app after authentication..

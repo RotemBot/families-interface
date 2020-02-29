@@ -1,6 +1,7 @@
 import { Container, interfaces } from 'inversify'
 import { Loggable, Client } from '@/services'
 import getDecorators from 'inversify-inject-decorators'
+import { store } from '@/store'
 
 export class Kernel extends Loggable {
 
@@ -40,7 +41,9 @@ export class Kernel extends Loggable {
     private setup () {
         try {
             this._logger.info('Starting Service')
-            this.container.bind(Client).to(Client).inSingletonScope()
+            const client = new Client()
+            store.actions.injectClient(client)
+            this.container.bind(Client).toConstantValue(client)
         } catch (error) {
             try {
                 this._logger.error('FATAL - Failed to start service', { error })
