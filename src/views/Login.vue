@@ -44,10 +44,7 @@
         private async _redirect () {
             // @ts-ignore
             if (this.$auth.isAuthenticated) {
-                await this.store.actions.setAuthenticated(true)
                 await NAVIGATOR.main()
-            } else {
-                await this.store.actions.setAuthenticated(false)
             }
         }
 
