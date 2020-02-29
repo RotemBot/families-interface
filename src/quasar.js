@@ -20,7 +20,8 @@ import {
     QItem,
     QItemSection,
     QItemLabel,
-    QImg
+    QImg,
+    Cookies
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -44,6 +45,7 @@ Vue.use(Quasar, {
     directives: {
     },
     plugins: {
+        Cookies
     },
     lang: lang
 })
