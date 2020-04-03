@@ -1,8 +1,9 @@
 import {BareActionContext} from '../../lib/vuex-typex/src'
 import {logger, resetValues, RootState, storeBuilder} from '@/store/config'
-import {Client} from '@/services'
+import {Client, CreateContactPayload, CreateFamilyPayload} from '@/services'
 import * as JWT from 'jsonwebtoken'
 import {Cookies} from 'quasar'
+import {UIContact, UIFamily} from '@/models'
 
 export default class Actions {
     private _client: Client | null = null
@@ -23,6 +24,16 @@ export default class Actions {
         },
         '_setUserDetails'
     )
+    private _setFamily = storeBuilder.commit(
+        (
+            state: RootState,
+            family?: UIFamily
+        ) => {
+            state.family = family
+        },
+        '_setFamily'
+    )
+
 
     private _reset = storeBuilder.commit(
         (
@@ -51,13 +62,38 @@ export default class Actions {
             try {
                 logger.debug(`Find family for email ${email}`)
                 const family = await this._client!.getFamilyByEmail(email)
-                debugger
+                if (family) {
+                    this._setFamily(new UIFamily(family))
+                }
             }
             catch (error) {
                 throw error
             }
         },
         'getFamilyByEmail')
+
+    public createFamily = storeBuilder.dispatch(
+        async (context: BareActionContext<RootState, RootState>, payload: { family: CreateFamilyPayload, primary: CreateContactPayload }) => {
+            try {
+                logger.debug(`Creating a new family.`)
+                const family = await this._client!.createNewFamily(payload.family)
+                if (!family) {
+                    throw new Error(`Error creating a family`)
+                }
+                const uiFamily = new UIFamily(family)
+                const contact = await this._client!.createContact(payload.primary, uiFamily.email)
+                if (!contact) {
+                    throw new Error(`Error creating a primary contact for the family`)
+                }
+                uiFamily.primaryContact = new UIContact(contact)
+                this._setFamily(uiFamily)
+            }
+            catch (error) {
+                logger.error(`Error creating a new family`, { error, payload })
+                throw error
+            }
+        },
+        'createFamily')
 
     public setJWT = storeBuilder.dispatch(
         async (context: BareActionContext<RootState, RootState>, jwt: string): Promise<string> => {

@@ -1,16 +1,8 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { createDecorator } from 'vue-class-component'
 export { Watch, Prop } from 'vue-property-decorator'
+export { NoCache } from 'vue-class-decorator'
 import { store } from '@/store'
-import { NAVIGATOR } from '@/router/Navigator'
-
-const NoCache = createDecorator((options, key) => {
-    // component options should be passed to the callback
-    // and update for the options object affect the component
-    // @ts-ignore
-    options.computed[key].cache = false
-})
 
 abstract class BaseComponent extends Vue {
 
@@ -30,4 +22,4 @@ abstract class BaseComponent extends Vue {
     protected auth0: any = this.$auth
 }
 
-export { BaseComponent, Component, NoCache }
+export { BaseComponent, Component }

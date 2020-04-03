@@ -1,5 +1,6 @@
 <template>
-    <div class="home">
+    <div class="home row justify-center items-center">
+        <create-family-form v-if="!hasFamily"></create-family-form>
     </div>
 </template>
 
@@ -11,6 +12,10 @@
         public login() {
             // @ts-ignore - auth0 plugin
             this.$auth.loginWithRedirect()
+        }
+
+        public get hasFamily (): boolean {
+            return this.store.getters.family() !== undefined
         }
 
 
@@ -25,3 +30,9 @@
         }
     }
 </script>
+
+<style lang="stylus" scoped>
+    .home {
+        height 100%
+    }
+</style>

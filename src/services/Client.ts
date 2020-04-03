@@ -1,11 +1,21 @@
 import Axios, { AxiosInstance } from 'axios'
 import {injectable} from 'inversify'
 import {Loggable} from '@/services/Loggable'
+import {ContactRole, Gender} from '@/models'
 
 export interface CreateFamilyPayload {
     name: string
     homeTown: string
     email: string
+}
+
+export interface CreateContactPayload {
+    firstName: string
+    lastName: string
+    phone: string
+    email?: string
+    gender: Gender
+    role: ContactRole
 }
 
 @injectable()
@@ -30,13 +40,27 @@ export class Client extends Loggable {
     }
 
     public async createNewFamily (payload: CreateFamilyPayload) {
-        const res = await this._axios.post('/families', payload)
+        try {
+            const res = await this._axios.post('/families', payload)
+            return res.data
+        } catch (error) {
+            this._logger.warn(`Error creating new family`, { error, payload })
+        }
+    }
+
+    public async createContact (payload: CreateContactPayload, family: string) {
+        try {
+            const res = await this._axios.post(`/families/${family}/contacts`, payload)
+            return res.data
+        } catch (error) {
+            this._logger.warn(`Error creating new family`, { error, payload })
+        }
     }
 
     public async getFamilyByEmail (email: string) {
         try {
             const res = await this._axios.get(`/families/find/${email}`)
-            debugger
+            return res.data
         } catch (error) {
             this._logger.warn(`No family found for given email`, { error, email })
         }

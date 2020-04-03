@@ -32,4 +32,10 @@ export default class Getters {
             return state.avatar || 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngkey.com%2Fdetail%2Fu2q8u2w7e6y3r5y3_default-profile-picture-avatar-png-green%2F&psig=AOvVaw3C2aSLD7bcO3rj3kzSHaNc&ust=1583075424797000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDv9taF9-cCFQAAAAAdAAAAABAD'
         }
         , 'avatar')
+
+    public family = storeBuilder.read(
+        (state: RootState) => {
+            return state.family
+        }
+        , 'family')
 }

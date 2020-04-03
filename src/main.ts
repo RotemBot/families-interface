@@ -14,6 +14,8 @@ import { domain, clientId } from './auth_config.json'
 // @ts-ignore
 import { Auth0Plugin } from './auth'
 import { vuexStore } from '@/store'
+import FormLayout from '@/components/forms/FormLayout.vue'
+import CreateFamilyForm from '@/components/forms/createFamilyForm/CreateFamilyForm.vue'
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {
@@ -32,6 +34,8 @@ Vue.use(Auth0Plugin, {
 Vue.component('hello-world', HelloWorld)
 Vue.component('side-panel', SidePanel)
 Vue.component('main-toolbar', MainToolbar)
+Vue.component('form-layout', FormLayout)
+Vue.component('create-family-form', CreateFamilyForm)
 
 Vue.config.productionTip = false
 

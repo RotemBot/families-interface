@@ -1,5 +1,4 @@
 import Vue from 'vue'
-
 import './styles/quasar.styl'
 import lang from 'quasar/lang/he.js'
 import '@quasar/extras/material-icons-outlined/material-icons-outlined.css'
@@ -10,6 +9,9 @@ import {
     Quasar,
     QLayout,
     QHeader,
+    QCard,
+    QCardSection,
+    QCardActions,
     QDrawer,
     QPageContainer,
     QPage,
@@ -30,6 +32,9 @@ Vue.use(Quasar, {
     components: {
         QLayout,
         QHeader,
+        QCard,
+        QCardSection,
+        QCardActions,
         QDrawer,
         QPageContainer,
         QPage,

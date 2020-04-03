@@ -22,4 +22,8 @@
     * {
         font-family 'Varela Round', sans-serif
     }
+
+    .q-page-container {
+        height 100vh
+    }
 </style>
