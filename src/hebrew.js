@@ -6,6 +6,7 @@ class Hebrew {
     static welcomeMessage = `ברוכים הבאים למערכת הפעילויות של ${this.appName}`
     static logOut = `התנתק`
     static createFamilyFormHeader = `יצירת כרטיס למשפחה חדשה`
+    static darkTheme = `תצוגה כהה`
 
     toJSON() {
         const keys = Object.getOwnPropertyNames(Hebrew).splice(3)

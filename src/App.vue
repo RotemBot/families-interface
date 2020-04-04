@@ -11,8 +11,9 @@
     export default class LayoutDefault extends BaseComponent {
 
         public created () {
-            // @ts-ignore
-            this.$q.dark.set(true)
+            if (this.$q.cookies.has('dark')) {
+                this.$q.dark.set(this.$q.cookies.get<boolean>('dark'))
+            }
         }
 
     }

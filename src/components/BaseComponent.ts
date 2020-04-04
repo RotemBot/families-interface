@@ -20,6 +20,10 @@ abstract class BaseComponent extends Vue {
 
     // @ts-ignore - auth0 plugin
     protected auth0: any = this.$auth
+
+    protected get isDark (): boolean {
+        return this.$q.dark.isActive
+    }
 }
 
 export { BaseComponent, Component }

@@ -17,6 +17,8 @@ import {
     QPage,
     QToolbar,
     QToolbarTitle,
+    QToggle,
+    QMenu,
     QBtn,
     QIcon,
     QList,
@@ -28,7 +30,9 @@ import {
 } from 'quasar'
 
 Vue.use(Quasar, {
-    config: {},
+    config: {
+        dark: 'auto'
+    },
     components: {
         QLayout,
         QHeader,
@@ -40,6 +44,8 @@ Vue.use(Quasar, {
         QPage,
         QToolbar,
         QToolbarTitle,
+        QToggle,
+        QMenu,
         QBtn,
         QIcon,
         QList,

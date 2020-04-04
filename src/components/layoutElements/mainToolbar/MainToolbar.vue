@@ -1,5 +1,5 @@
 <template>
-    <q-toolbar class="bg-black text-white">
+    <q-toolbar class="bg-secondary">
         <q-btn
                 v-if="hasSideMenu"
                 flat
@@ -14,8 +14,30 @@
             {{ $heb.appName }}
         </q-toolbar-title>
 
+
+
         <div class="column quick-actions">
             <div class="row justify-end">
+                <q-btn
+                        round
+                        icon="settings"
+                        dense
+                        flat
+                >
+                    <q-menu>
+                        <q-list dense>
+                            <q-item>
+                                <q-toggle
+                                        :label="$heb.darkTheme"
+                                        :value="$q.dark.isActive"
+                                        @input="toggleTheme"
+                                        color="secondary"
+                                        left-label
+                                ></q-toggle>
+                            </q-item>
+                        </q-list>
+                    </q-menu>
+                </q-btn>
                 <q-btn v-if="isAuthenticated"
                        :label="$heb.logOut"
                        flat
@@ -25,7 +47,7 @@
                        @click="logout"
                 ></q-btn>
                 <div class="column col-auto justify-center">
-                    <img src="@/assets/logo_chief_secondary_flat.png" height="35"/>
+                    <img src="@/assets/logo_chief_primary_flat.png" height="35"/>
                 </div>
             </div>
         </div>
@@ -52,6 +74,11 @@
         public mounted () {
             // @ts-ignore
             window.mainToolBar = this
+        }
+
+        public toggleTheme () {
+            this.$q.dark.toggle()
+            this.$q.cookies.set('dark', `${this.isDark}`)
         }
 
         public beforeDestroy () {

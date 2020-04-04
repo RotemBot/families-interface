@@ -1,7 +1,6 @@
 import Vue from "vue"
 import createAuth0Client from "@auth0/auth0-spa-js"
-import {clientId, domain} from '../auth_config'
-import router from '../router'
+import {Cookies} from 'quasar'
 
 /** Define a default action to perform after authentication */
 const DEFAULT_REDIRECT_CALLBACK = () =>
@@ -35,8 +34,8 @@ export const useAuth0 = ({
             async init () {
                 // Create a new instance of the SDK client using members of the given options object
                 this.auth0Client = await createAuth0Client({
-                    domain: domain,
-                    client_id: clientId,
+                    domain: options.domain,
+                    client_id: options.clientId,
                     audience: options.audience,
                     redirect_uri: redirectUri
                 });
@@ -92,6 +91,7 @@ export const useAuth0 = ({
                 if (!this.auth0Client) {
                     await this.init()
                 }
+                Cookies.remove('jwt')
                 return this.auth0Client.logout(o);
             }
         },

@@ -1,4 +1,5 @@
 {
   "domain": "chiefsport.eu.auth0.com",
-  "clientId": "tWHovWCdM2K23rc0DTxsb5JkN8kqweQV"
+  "clientId": "tWHovWCdM2K23rc0DTxsb5JkN8kqweQV",
+  "audience": "https://chiefsport.eu.auth0.com/api/v2/"
 }
