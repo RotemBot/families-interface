@@ -5,17 +5,14 @@ import 'reflect-metadata'
 import router from './router'
 import './quasar'
 import './hebrew'
-import HelloWorld from '@/components/HelloWorld.vue'
-import SidePanel from '@/components/layoutElements/sidePanel/SidePanel.vue'
-import MainToolbar from '@/components/layoutElements/mainToolbar/MainToolbar.vue'
 import {Kernel} from '@/kernel'
 // @ts-ignore
 import { domain, clientId } from './auth_config.json'
 // @ts-ignore
 import { Auth0Plugin } from './auth'
 import { vuexStore } from '@/store'
-import FormLayout from '@/components/forms/FormLayout.vue'
-import CreateFamilyForm from '@/components/forms/createFamilyForm/CreateFamilyForm.vue'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {
@@ -31,11 +28,48 @@ Vue.use(Auth0Plugin, {
     }
 })
 
-Vue.component('hello-world', HelloWorld)
-Vue.component('side-panel', SidePanel)
-Vue.component('main-toolbar', MainToolbar)
-Vue.component('form-layout', FormLayout)
-Vue.component('create-family-form', CreateFamilyForm)
+const generalComponents = require.context(
+    // The relative path of the components folder
+    './components',
+    // Whether or not to look in sub-folders
+    true,
+    // The regular expression used to match base component filenames
+    /.*\.(vue|js)$/
+)
+const viewsComponents = require.context(
+    './views',
+    true,
+    /.*\.(vue|js)$/
+)
+const registerComponents = (components: any) => {
+
+    components.keys().forEach((fileName: string) => {
+        // Get component config
+        const componentConfig = components(fileName)
+
+        // Get PascalCase name of component
+        const componentName = upperFirst(
+            camelCase(
+                // Gets the file name regardless of folder depth
+                // @ts-ignore
+                fileName
+                    .split('/')
+                    .pop()
+                    .replace(/\.\w+$/, '')
+            )
+        )
+        // Register component globally
+        Vue.component(
+            componentName,
+            // Look for the component options on `.default`, which will
+            // exist if the component was exported with `export default`,
+            // otherwise fall back to module's root.
+            componentConfig.default || componentConfig
+        )
+    })
+}
+registerComponents(viewsComponents)
+registerComponents(generalComponents)
 
 Vue.config.productionTip = false
 
