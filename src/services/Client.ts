@@ -48,6 +48,15 @@ export class Client extends Loggable {
         }
     }
 
+    public async getFamilySubscriptions (familyId: string) {
+        try {
+            const res = await this._axios.get(`/families/${familyId}/subscriptions`)
+            return res.data
+        } catch (error) {
+            this._logger.warn(`Error creating new family`, { error, familyId })
+        }
+    }
+
     public async createContact (payload: CreateContactPayload, family: string) {
         try {
             const res = await this._axios.post(`/families/${family}/contacts`, payload)

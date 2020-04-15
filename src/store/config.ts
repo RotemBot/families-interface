@@ -1,6 +1,6 @@
 import {loggerFactory} from '@/utils/logger'
 import {getStoreBuilder} from '../../lib/vuex-typex/src'
-import {UIFamily} from '@/models'
+import {UIFamily, UISubscription} from '@/models'
 
 export const logger = loggerFactory('store')
 
@@ -8,13 +8,15 @@ export interface RootState {
     email: string | undefined
     avatar: string | undefined
     family: UIFamily | undefined
+    subscriptions: UISubscription[]
 }
 
 export function resetValues (): RootState {
     return {
         email: undefined,
         avatar: undefined,
-        family: undefined
+        family: undefined,
+        subscriptions: []
     }
 }
 
