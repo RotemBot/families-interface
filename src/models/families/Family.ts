@@ -1,6 +1,7 @@
 import {UIContact} from '@/models'
 
 export interface UIFamily {
+    id: string
     name: string
     homeTown: string
     email: string

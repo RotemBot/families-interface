@@ -10,8 +10,8 @@ export interface UIContact {
 }
 
 export enum ContactRole {
-    PRIMARY,
-    SECONDARY
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary'
 }
 
 export class UIContact implements UIContact {

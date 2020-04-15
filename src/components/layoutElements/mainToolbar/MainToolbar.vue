@@ -16,6 +16,18 @@
 
 
 
+        <div class="column col-grow" v-if="family">
+            <div class="row justify-center">
+                <q-avatar
+                        size="lg"
+                >
+                    <img :src="avatar" />
+                </q-avatar>
+                <div class="column justify-center family-name">
+                    {{ $heb.family }} {{ family.name }}
+                </div>
+            </div>
+        </div>
         <div class="column quick-actions">
             <div class="row justify-end">
                 <q-btn
@@ -56,6 +68,7 @@
 
 <script lang="ts">
     import {BaseComponent, Component, Prop} from '@/components/BaseComponent'
+    import {UIFamily} from '@/models'
 
     @Component({name: 'main-toolbar'})
     export default class MainToolbar extends BaseComponent {
@@ -69,6 +82,14 @@
             this.$auth.logout({
                 returnTo: window.location.origin
             })
+        }
+
+        public get avatar () {
+            return this.store.getters.avatar()
+        }
+
+        public get family (): UIFamily | undefined {
+            return this.store.getters.family()
         }
 
         public mounted () {
@@ -92,5 +113,11 @@
 <style lang="stylus" scoped>
     .quick-actions {
         width 30%
+    }
+
+    .family-name {
+        font-size large
+        color $primary
+        margin-left 7px
     }
 </style>

@@ -59,7 +59,7 @@ export class Client extends Loggable {
 
     public async getFamilyByEmail (email: string) {
         try {
-            const res = await this._axios.get(`/families/find/${email}`)
+            const res = await this._axios.get(`/families/find?email=${email}`)
             return res.data
         } catch (error) {
             this._logger.warn(`No family found for given email`, { error, email })

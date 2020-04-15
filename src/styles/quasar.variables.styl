@@ -9,8 +9,20 @@ $dark      = #181c24
 $dark-page = #282c34
 
 $positive  = #21BA45
-$negative  = #711823
+$negative  = #99404b
 $info      = #31CCEC
 $warning   = #F2C037
+
+$primary-darkened = darken($primary, 30%)
+
+:root
+  --q-color-primary-darkened $primary-darkened
+
+.text-primary-darkened
+  color $primary-darkened !important
+  color var(--q-color-primary-darkened) !important
+.bg-primary-darkened
+  background $primary-darkened !important
+  background var(--q-color-primary-darkened) !important
 
 @import '~quasar-variables-styl'

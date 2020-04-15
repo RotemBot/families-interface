@@ -17,7 +17,7 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "logger": "0.0.1",
-    "quasar": "^1.9.12",
+    "quasar": "^1.9.15",
     "reflect-metadata": "^0.1.13",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.10",

@@ -35,8 +35,7 @@ export const beforeEach = async (to: Route, from: Route, next: Function) => {
             next({
                 name: home.name
             })
-        }
-        else {
+        } else {
             await prepare(toMeta, to, from)
             next()
         }

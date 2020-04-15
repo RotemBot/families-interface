@@ -81,7 +81,7 @@ export default class Actions {
                     throw new Error(`Error creating a family`)
                 }
                 const uiFamily = new UIFamily(family)
-                const contact = await this._client!.createContact(payload.primary, uiFamily.email)
+                const contact = await this._client!.createContact(payload.primary, uiFamily.id)
                 if (!contact) {
                     throw new Error(`Error creating a primary contact for the family`)
                 }

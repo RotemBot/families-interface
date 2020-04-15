@@ -7,6 +7,7 @@ import '@quasar/extras/material-icons/material-icons.css'
 import '@quasar/extras/ionicons-v4/ionicons-v4.css'
 import {
     Quasar,
+    QAvatar,
     QLayout,
     QHeader,
     QCard,
@@ -22,11 +23,14 @@ import {
     QBtn,
     QIcon,
     QList,
+    QInput,
     QItem,
     QItemSection,
     QItemLabel,
     QImg,
-    Cookies
+    QSelect,
+    Cookies,
+    Notify
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -34,6 +38,7 @@ Vue.use(Quasar, {
         dark: 'auto'
     },
     components: {
+        QAvatar,
         QLayout,
         QHeader,
         QCard,
@@ -49,15 +54,18 @@ Vue.use(Quasar, {
         QBtn,
         QIcon,
         QList,
+        QInput,
         QItem,
         QItemSection,
         QItemLabel,
-        QImg
+        QImg,
+        QSelect
     },
     directives: {
     },
     plugins: {
-        Cookies
+        Cookies,
+        Notify
     },
     lang: lang
 })
