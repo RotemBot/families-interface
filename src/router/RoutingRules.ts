@@ -2,7 +2,7 @@ import {Route} from 'vue-router'
 import {login} from '@/router/routes/noAuth'
 import {RouteMeta} from '@/models'
 import {store} from '@/store'
-import {home} from '@/router/routes/layouts'
+import {createFamily, familyMain, home} from '@/router/routes/layouts'
 import {loggerFactory} from '@/utils/logger'
 
 const _logger = loggerFactory(`Routing Rules`)
@@ -11,7 +11,8 @@ const _logger = loggerFactory(`Routing Rules`)
 const prepare = async (toMeta: RouteMeta, to: Route, from: Route) => {
     const dest = to.name
     switch (dest) {
-        case home.name:
+        case familyMain.name:
+        case createFamily.name:
             await store.actions.getFamilyByEmail(store.getters.email()!)
     }
 }
@@ -31,13 +32,30 @@ export const beforeEach = async (to: Route, from: Route, next: Function) => {
                 name: login.name
             })
         }
-        if (to.name === login.name && store.getters.isAuthenticated()()) {
-            next({
-                name: home.name
-            })
+        if (to.name === login.name) {
+            if (store.getters.isAuthenticated()()) {
+                next({
+                    name: createFamily.name
+                })
+            } else { next() }
+
         } else {
             await prepare(toMeta, to, from)
-            next()
+            const familyExists = !!store.getters.family()
+            if (to.name !== createFamily.name && !familyExists) {
+                next({
+                    name: createFamily.name
+                })
+            } else if (to.name === createFamily.name && familyExists) {
+                next({
+                    name: familyMain.name,
+                    params: {
+                        family_id: store.getters.family()!.id
+                    }
+                })
+            } else {
+                next()
+            }
         }
     } catch (error) {
         _logger.error(`Error on beforeEach navigation hook`, { error, to, from })

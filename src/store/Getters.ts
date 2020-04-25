@@ -1,6 +1,8 @@
 import {RootState, storeBuilder} from '@/store/config'
 import {Cookies} from 'quasar'
 import * as JWT from 'jsonwebtoken'
+import { groupBy } from 'lodash'
+import {UISubscription} from '@/models'
 
 export default class Getters {
     public isAuthenticated = storeBuilder.read(
@@ -38,4 +40,16 @@ export default class Getters {
             return state.family
         }
         , 'family')
+
+    public subscriptions = storeBuilder.read(
+        (state: RootState): UISubscription[] => {
+            return state.subscriptions
+        }
+        , 'subscriptions')
+
+    public subscriptionsByParticipant = storeBuilder.read(
+        (state: RootState): Dictionary<UISubscription[]> => {
+            return groupBy(state.subscriptions, 'subscriber')
+        }
+        , 'subscriptionsByParticipant')
 }

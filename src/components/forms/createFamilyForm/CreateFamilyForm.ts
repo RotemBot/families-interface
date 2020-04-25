@@ -1,5 +1,6 @@
 import {BaseComponent, Component} from '@/components/BaseComponent'
 import {ContactRole, Gender, SelectOption} from '@/models'
+import {NAVIGATOR} from '@/router/Navigator'
 
 @Component({name: 'create-family-form'})
 export default class CreateFamilyForm extends BaseComponent {
@@ -44,8 +45,9 @@ export default class CreateFamilyForm extends BaseComponent {
             })
             this.$q.notify({
                 color: 'positive',
-                message: 'Family Created Successfully'
+                message: this.heb.createFamilySuccess
             })
+            await NAVIGATOR.family({ id: this.store.getters.family()!.id})
         } catch (error) {
             this.logger.error(`Error creating new family`, error)
         }
@@ -63,11 +65,9 @@ export default class CreateFamilyForm extends BaseComponent {
     public getGenderDisplay (gender: Gender) {
         switch (gender) {
             case Gender.FEMALE:
-                // @ts-ignore
-                return this.$heb.female
+                return this.heb.female
             case Gender.MALE:
-                // @ts-ignore
-                return this.$heb.male
+                return this.heb.male
         }
     }
 

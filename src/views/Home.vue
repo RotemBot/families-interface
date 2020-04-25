@@ -1,6 +1,6 @@
 <template>
-    <div class="home row justify-center items-center">
-        <create-family-form v-if="!hasFamily"></create-family-form>
+    <div class="home row justify-center items-center full-height">
+        <router-view />
     </div>
 </template>
 
@@ -33,6 +33,5 @@
 
 <style lang="stylus" scoped>
     .home {
-        height 100%
     }
 </style>

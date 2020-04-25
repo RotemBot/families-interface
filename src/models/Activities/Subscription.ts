@@ -1,8 +1,8 @@
 export interface UISubscription {
     group: string
     subscriber: string
-    startDate: string
-    endDate: string
+    startDate: number
+    endDate: number
     status: SubscriptionStatus
     year: number
 }

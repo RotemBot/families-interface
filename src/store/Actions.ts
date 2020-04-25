@@ -34,9 +34,9 @@ export default class Actions {
     private _setSubscriptions = storeBuilder.commit(
         (
             state: RootState,
-            subcscriptions: UISubscription[]
+            subscriptions: UISubscription[]
         ) => {
-            state.subscriptions = subcscriptions
+            state.subscriptions = subscriptions
         },
         '_setSubscriptions'
     )
@@ -78,7 +78,9 @@ export default class Actions {
         'getFamilyByEmail')
 
     public createFamily = storeBuilder.dispatch(
-        async (context: BareActionContext<RootState, RootState>, payload: { family: CreateFamilyPayload, primary: CreateContactPayload }) => {
+        async (context: BareActionContext<RootState, RootState>,
+               payload: { family: CreateFamilyPayload, primary: CreateContactPayload }
+        ) => {
             try {
                 logger.debug(`Creating a new family.`)
                 const family = await this._client!.createNewFamily(payload.family)
@@ -105,9 +107,8 @@ export default class Actions {
                 logger.debug(`Getting family subscriptions.`)
                 const subs = await this._client!.getFamilySubscriptions(payload.familyId)
                 this._setSubscriptions(subs)
-
             } catch (error) {
-                logger.error(`Error creating a new family`, { error, payload })
+                logger.error(`Error fetching family subscriptions`, { error, payload })
                 throw error
             }
         },
@@ -130,6 +131,7 @@ export default class Actions {
             }
         },
         'setJWT')
+
     public injectClient = (client: Client) => {
         this._client = client
     }

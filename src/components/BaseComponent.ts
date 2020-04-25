@@ -21,6 +21,8 @@ abstract class BaseComponent extends Vue {
 
     // @ts-ignore - auth0 plugin
     protected auth0: any = this.$auth
+    // @ts-ignore
+    protected heb: any = this.$heb
 
     protected logger = loggerFactory(this.constructor.name)
 
