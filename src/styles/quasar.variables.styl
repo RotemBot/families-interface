@@ -5,7 +5,7 @@ $primary   = #e6e6e6
 $secondary = #26A69A
 $accent    = #9C27B0
 
-$dark      = #181c24
+$dark      = #1e2229
 $dark-page = #282c34
 
 $positive  = #21BA45
@@ -14,9 +14,11 @@ $info      = #31CCEC
 $warning   = #F2C037
 
 $primary-darkened = darken($primary, 30%)
+$secondary-lightened = desaturate(lighten($secondary, 70%), 50%)
 
 :root
   --q-color-primary-darkened $primary-darkened
+  --q-color-secondary-lightened $secondary-lightened
 
 .text-primary-darkened
   color $primary-darkened !important
@@ -24,5 +26,12 @@ $primary-darkened = darken($primary, 30%)
 .bg-primary-darkened
   background $primary-darkened !important
   background var(--q-color-primary-darkened) !important
+
+.text-secondary-lightened
+  color $secondary-lightened !important
+  color var(--q-color-secondary-lightenedd) !important
+.bg-secondary-lightened
+  background $secondary-lightened !important
+  background var(--q-color-secondary-lightened) !important
 
 @import '~quasar-variables-styl'

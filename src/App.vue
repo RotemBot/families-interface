@@ -20,6 +20,10 @@
 </script>
 
 <style lang="stylus">
+    .clickable {
+        cursor: pointer !important;
+    }
+
     * {
         font-family 'Varela Round', sans-serif
     }

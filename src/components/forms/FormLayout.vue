@@ -47,6 +47,6 @@
 
     .form-description {
         color $primary-darkened
-        font-size large
+        font-size x-large
     }
 </style>

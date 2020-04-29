@@ -22,6 +22,10 @@ class Hebrew {
     static male = `זכר`
     static family = `משפחת`
     static createFamilySuccess = `כרטיס משפחה חדש נפתח בהצלחה`
+    static noSubscriptions = `למשפחה זו אין רישומים פעילים השנה.`
+    static goSubscribe = `גשו להרשם לאחת הפעילויות שלנו!`
+    static activeSubscriptions = `רישומים פעילים`
+    static createNewSubscription = `צור רישום חדש`
 
     toJSON() {
         const keys = Object.getOwnPropertyNames(Hebrew).splice(3)
