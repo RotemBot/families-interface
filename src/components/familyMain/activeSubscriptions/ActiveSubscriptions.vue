@@ -14,7 +14,7 @@
                 v-if="subscriptions.length === 0"
                 class="column card-body"
         >
-            <div class="row flex-center q-pa-md">
+            <div class="row flex-center q-pa-md text-primary-darkened">
                 {{ heb.noSubscriptions }}
             </div>
             <div class="row flex-center q-pa-md">

@@ -1,5 +1,5 @@
 import {BaseComponent, Component} from '@/components/BaseComponent'
-import {ContactRole, Gender, SelectOption} from '@/models'
+import {ContactRole, Gender, genderOptions, getGenderDisplay, SelectOption} from '@/models'
 import {NAVIGATOR} from '@/router/Navigator'
 
 @Component({name: 'create-family-form'})
@@ -63,20 +63,10 @@ export default class CreateFamilyForm extends BaseComponent {
     }
 
     public getGenderDisplay (gender: Gender) {
-        switch (gender) {
-            case Gender.FEMALE:
-                return this.heb.female
-            case Gender.MALE:
-                return this.heb.male
-        }
+        return getGenderDisplay(gender)
     }
 
     public get options (): SelectOption[] {
-        return Object.values(Gender).map( gen => {
-            return {
-                label: this.getGenderDisplay(gen),
-                value: gen
-            }
-        })
+        return genderOptions()
     }
 }

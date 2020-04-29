@@ -1,5 +1,5 @@
 <template>
-    <q-layout view="hHh Lpr lFf">
+    <q-layout view="hHh Lpr lFf" class="main-layout">
         <q-header elevated class="glossy">
             <main-toolbar @toggleDrawer="leftDrawerOpen = !leftDrawerOpen"></main-toolbar>
         </q-header>
@@ -27,5 +27,9 @@
 </script>
 
 <style lang="stylus" scoped>
-
+    .main-layout {
+        max-height 100vh
+        min-height 100vh !important
+        overflow hidden
+    }
 </style>

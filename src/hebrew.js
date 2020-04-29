@@ -26,6 +26,14 @@ class Hebrew {
     static goSubscribe = `גשו להרשם לאחת הפעילויות שלנו!`
     static activeSubscriptions = `רישומים פעילים`
     static createNewSubscription = `צור רישום חדש`
+    static familyMembers = `בני המשפחה`
+    static contacts = `אנשי קשר`
+    static details = `פרטים`
+    static primary = `ראשי`
+    static secondary = `משני`
+    static gender = `מין`
+    static secondaryNotDefined = `איש קשר משני טרם הוגדר.`
+    static addContact = `הוסף איש קשר`
 
     toJSON() {
         const keys = Object.getOwnPropertyNames(Hebrew).splice(3)
@@ -37,7 +45,7 @@ class Hebrew {
     }
 }
 
-const hebDict = new Hebrew()
+export const hebDict = new Hebrew()
 
 Vue.prototype.$heb = {
     ...hebDict.toJSON()

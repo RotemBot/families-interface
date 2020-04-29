@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
-export { Watch, Prop } from 'vue-property-decorator'
+export { Watch, Prop, Model } from 'vue-property-decorator'
 export { NoCache } from 'vue-class-decorator'
 import { store } from '@/store'
 import {loggerFactory} from '@/utils/logger'
